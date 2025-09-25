@@ -1,0 +1,131 @@
+/* Container styling if used (wraps multiple cards in a row) */
+.task-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: flex-start;
+  padding: 20px;
+}
+
+/* Task card styling */
+.task-card {
+  background-color: #f8f8f8;
+  color: #2c2c2c;
+  border: 1px solid #ddd;
+  border-left: 5px solid transparent;
+  border-radius: 8px;
+  padding: 10px 14px;
+  width: 220px; /* Reduced width */
+  min-height: 70px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  opacity: 1;
+}
+
+.task-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.task-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.task-title {
+  margin: 0;
+  font-size: 0.95em;
+  font-weight: 600;
+  word-break: break-word;
+  max-width: 180px;
+}
+
+.status-icon {
+  font-size: 1em;
+}
+
+.task-details {
+  margin-top: 6px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+}
+
+.priority-tag {
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.7em;
+  font-weight: 600;
+  text-transform: uppercase;
+  border: 1px solid #aaa;
+}
+
+.priority-tag.low {
+  background-color: #ffffff;
+  color: #333;
+}
+
+.priority-tag.medium {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+.priority-tag.high {
+  background-color: #e53935;
+  color: white;
+  border: none;
+}
+
+.important-badge {
+  background-color: #000;
+  color: #fff;
+  padding: 2px 6px;
+  font-size: 0.7em;
+  border-radius: 4px;
+}
+
+.task-card.completed {
+  opacity: 0.9;
+}
+
+.task-card.important {
+  border-left-color: #000;
+}
+
+.add-task-form {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  z-index: 9999;
+  min-width: 300px;
+  max-width: 90%;
+}
+
+/* Optional: background overlay */
+.add-task-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 9998;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 600px) {
+  .task-card {
+    width: 75%;
+  }
+}

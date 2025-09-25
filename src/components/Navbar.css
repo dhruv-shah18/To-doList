@@ -1,0 +1,262 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  margin: 4px 5px 5px 5px !important;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0px 1px 1px 1px rgb(136, 119, 119);
+  justify-content: space-between;
+}
+
+.ul-link {
+  display: flex;
+  margin: 0 !important;
+  list-style: none;
+  gap: 1em;
+}
+
+.ul-link .li-links {
+  text-decoration: none;
+  color: inherit;
+  vertical-align: middle;
+}
+
+.ul-link .btn {
+  padding: 2px 8px 2px;
+  margin-top: 0px;
+  color: white;
+  background-color: black;
+  border-radius: 5px;
+}
+
+.ul-button.btn {
+  padding: 4px 8px 2px 10px;
+  color: white;
+  background-color: black;
+  border-radius: 5px;
+}
+
+.ul-link .btn:hover {
+  color: white;
+}
+
+.ul-link .li-links img {
+  margin-right: 1px;
+}
+
+.ul-link li:hover {
+    color:rgb(126, 112, 112);
+}
+
+.icon {
+  height: 13px;
+  width: 15px;
+}
+
+.logo {
+  width: 20px;
+  height: 20px; 
+  transform: scale(1.6);
+  margin-left: 5px;
+  border-radius: 50%;
+  border: 1px solid black;
+}
+
+.menu-icon {
+  height: 2em;
+  width: 2em;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.menu-div {
+  height: 2em;
+  vertical-align: middle;
+  display: none;
+}
+
+.flex-title {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 0;
+  text-align: left;
+}
+
+.ul-button {
+  display: none;
+  width: 150px;
+  list-style: none;
+  position: absolute;
+  right: 10px;
+  top: 45px; 
+  padding: 5px;
+  border-radius: 2px;
+  box-shadow: 1px 0px 15px 3px #beb8b8;
+  z-index: 100;
+  background-color: #fff;
+}
+
+.ul-button .btn-links, .ul-button li {
+  text-decoration: none;
+  color: inherit;
+  margin-bottom: 5px !important;
+  border-radius: 2px;
+  padding: 2px;
+}
+
+.ul-button li {
+    display: flex;
+    align-items: center;
+}
+
+.ul-button li:hover, .btn-links:hover {
+    background-color: black;
+    color: white;
+}
+
+.ul-button .icon:hover {
+    background-color: black;
+    color: white;
+}
+
+.ul-button li:first-child {
+   margin-top: 2px !important 
+}
+
+.ul-button li:last-child {
+   margin-bottom: 0 !important 
+}
+
+.no-margin-padding {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+  margin: 0 !important;
+  padding: 0 !important;
+  gap: 10px
+}
+
+.flex-title .small {
+  font-size: 0.4rem;
+  font-variant: small-caps;
+  margin-left: 13px !important;
+}
+
+.mp-logo {
+  margin-top: 5px;
+}
+
+.add-task-form {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  z-index: 9999;
+  min-width: 300px;
+  max-width: 90%;
+}
+
+/* Optional: background overlay */
+.add-task-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 9998;
+}
+
+.add-button {
+  background-color: black;
+  border: none;
+  border-radius: 3px;
+  color: #f9f9f9;
+  padding: 5px 8px 5px;
+  font-weight: 700;
+}
+
+.btn-button {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  outline: none;
+}
+
+.btn-button button {
+  background-color: white;
+  border: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  line-height: normal;
+  margin: 0;
+  padding: 0;
+  font-weight: 500;
+  outline: none;
+  border: 1px solid black;
+  border-radius: 4px;
+  padding: 5px;
+}
+
+.btn-button button:hover {
+  background-color: white;
+  color: black;
+}
+
+
+@media (max-width: 991px) {
+  .ul-link {
+    display: none;
+  }
+  
+  .show-menu {
+    display: inline !important;
+  }
+
+  .menu-div {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 0 !important;
+  }
+
+  .ul-button {
+    height: max-content;
+    padding: 10px !important;
+  }
+
+  .ul-button img {
+    margin-right: 3px !important;
+  }
+}
+
+
+@media (max-width: 414px) {
+ .ul-button {
+  right: 0px;
+  margin-right: 0;
+ }
+
+ .navbar {
+  width: calc(95vw + 10px);
+  overflow-y: hidden;
+  overflow: hidden;
+ }
+}
+
+@media (max-width: 530px) {
+  .navbar {
+    width: calc(85vw + 8px);
+    overflow: hidden;
+  }
+}
