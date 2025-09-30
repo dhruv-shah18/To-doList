@@ -7,6 +7,8 @@ const AuthContext = createContext({
   loading: true,
   setAuthToken: null,
   setUser: null,
+  role: null,
+  setRole: null,
 });
 
 export const AuthProvider = ({ children }) => {
@@ -15,20 +17,19 @@ export const AuthProvider = ({ children }) => {
   );
   const [user, setUser] = useState(localStorage.getItem("user") || null);
   const [loading, setLoading] = useState(true);
-
-  // if ( authToken || user ) {
-  //   setLoading(false);
-  // }
+  const [role, setRole] = useState(localStorage.getItem("role") || null);
 
   return (
     <AuthContext.Provider
       value={{
         authToken: authToken,
-        user,
+        user: user,
         isAuthenticated: !!authToken,
         loading,
         setAuthToken,
         setUser,
+        setRole,
+        role: role
       }}
     >
       {children}

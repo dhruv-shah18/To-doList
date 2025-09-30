@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import './UserRegister.css';
 import { Link } from 'react-router';
 import { useNavigate } from 'react-router-dom';
-import { useFetchHook } from '../API/useFetchHook';
-import { API } from '../API/APIRoute';
+import { useFetchHook } from '../../API/useFetchHook';
+import { API } from '../../API/APIRoute';
 
 const UserRegister = () => {
   const [formData, setFormData] = useState({

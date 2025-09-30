@@ -12,7 +12,7 @@ const TasksFallback = () => {
         You currently have no tasks.
         Add a new task to get started!
       </p>
-      <p style={{ color: "#c72424ff", fontSize: "1rem" }}>Please login to start using the app. Ignore this message if you are already logged in.</p>
+      <p style={{ color: "#c72424ff", fontSize: "1rem" }}> NOTE : Please login to start using the app. Ignore this message if you are already logged in.</p>
     </div>
   );
 };

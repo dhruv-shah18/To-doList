@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./CommonCSS.css";
-import { useFetchHook } from "../API/useFetchHook";
-import { API } from "../API/APIRoute";
-import TaskCard from "./TaskCard";
+import { useFetchHook } from "../../API/useFetchHook";
+import { API } from "../../API/APIRoute";
+import TaskCard from "../CardComponent/TaskCard";
 import TasksFallback from "./TasksFallback";
 
 const CompletedTask = () => {

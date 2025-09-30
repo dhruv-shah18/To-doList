@@ -1,10 +1,11 @@
 import React from 'react';
-import Navbar from './components/Navbar';
+// import Navbar from './components/Navbar';
+import Navbar from './components/AppNavbar/Navbar';
 
-const Layout = ({ Component }) => {
+const Layout = ({ Component, hideNavbar = false }) => {
   return (
     <div>
-        <Navbar />
+        {!hideNavbar && <Navbar />}
         <main>
             {Component && <Component />}
         </main>

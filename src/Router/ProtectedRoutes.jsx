@@ -3,10 +3,7 @@ import { useAuth } from "../context/AuthContext";
 // import Loader from "../components/Loader";
 
 const ProtectedRoutes = ({ children }) => {
-  const { loading, isAuthenticated } = useAuth();
-
-  // Still checking localStorage/user
-  // if (loading) return <Loader />;
+  const { isAuthenticated } = useAuth();
 
   if (!isAuthenticated) {
     return <Navigate to="/login" replace />;

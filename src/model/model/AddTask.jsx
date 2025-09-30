@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./AddTask.css";
 import { useFetchHook } from "../../API/useFetchHook";
 import { API } from "../../API/APIRoute";
+import FormControl from "@mui/material/FormControl";
 
 const AddTask = ({ setOpen, addEditData }) => {
   const INPUT = {
@@ -25,7 +26,7 @@ const AddTask = ({ setOpen, addEditData }) => {
   const handleSubmitForm = async (e) => {
     e.preventDefault();
     let result;
-    if ( !addEditData ) {
+    if (!addEditData) {
       result = await fetchData({
         API_URL: API.ADDNEWTASK,
         PAYLOAD: formData,
@@ -34,13 +35,13 @@ const AddTask = ({ setOpen, addEditData }) => {
     } else {
       const input = {
         _id: addEditData?._id,
-        ...formData
-      }
+        ...formData,
+      };
       result = await fetchData({
         API_URL: API.UPDATETASK,
         PAYLOAD: input,
-        METHOD_TYPE : 'PUT',
-      })
+        METHOD_TYPE: "PUT",
+      });
     }
 
     // Reset form (optional)
@@ -60,73 +61,77 @@ const AddTask = ({ setOpen, addEditData }) => {
   };
 
   return (
-    <div className="add-task-container">
-      <form onSubmit={handleSubmitForm} className="add-task-form">
-        <div className="flex-add">
-          <h5 className="header-h5">{addEditData ? 'Edit' : 'Add'} New Task</h5>
-          <img
-            src="public/close.svg"
-            className="icon-close"
-            onClick={handleClose}
-          />
-        </div>
-        <div>
-          <label htmlFor="taskname">
-            Task Name<span style={{ color: "red" }}>*</span>:
-          </label>
-          <input
-            type="text"
-            id="taskname"
-            name="taskname"
-            value={formData.taskname}
-            onChange={handleChange}
-            required
-          />
-        </div>
-
-        <div>
-          <label htmlFor="completed">
-            <input
-              type="checkbox"
-              id="completed"
-              name="completed"
-              checked={formData.completed}
-              onChange={handleChange}
+    <FormControl>
+      <div className="add-task-container">
+        <form onSubmit={handleSubmitForm} className="add-task-form">
+          <div className="flex-add">
+            <h5 className="header-h5">
+              {addEditData ? "Edit" : "Add"} New Task
+            </h5>
+            <img
+              src="public/close.svg"
+              className="icon-close"
+              onClick={handleClose}
             />
-            Completed
-          </label>
-        </div>
-
-        <div>
-          <label htmlFor="important">
+          </div>
+          <div>
+            <label htmlFor="taskname">
+              Task Name<span style={{ color: "red" }}>*</span>:
+            </label>
             <input
-              type="checkbox"
-              id="important"
-              name="important"
-              checked={formData.important}
+              type="text"
+              id="taskname"
+              name="taskname"
+              value={formData.taskname}
               onChange={handleChange}
+              required
             />
-            Mark as Important
-          </label>
-        </div>
+          </div>
 
-        <div>
-          <label htmlFor="priority">Priority:</label>
-          <select
-            id="priority"
-            name="priority"
-            value={formData.priority}
-            onChange={handleChange}
-          >
-            <option value="low">Low</option>
-            <option value="medium">Medium</option>
-            <option value="high">High</option>
-          </select>
-        </div>
+          <div>
+            <label htmlFor="completed">
+              <input
+                type="checkbox"
+                id="completed"
+                name="completed"
+                checked={formData.completed}
+                onChange={handleChange}
+              />
+              Completed
+            </label>
+          </div>
 
-        <button type="submit">{addEditData ? 'Edit' : 'Add'} Task</button>
-      </form>
-    </div>
+          <div>
+            <label htmlFor="important">
+              <input
+                type="checkbox"
+                id="important"
+                name="important"
+                checked={formData.important}
+                onChange={handleChange}
+              />
+              Mark as Important
+            </label>
+          </div>
+
+          <div>
+            <label htmlFor="priority">Priority:</label>
+            <select
+              id="priority"
+              name="priority"
+              value={formData.priority}
+              onChange={handleChange}
+            >
+              <option value="low">Low</option>
+              <option value="medium">Medium</option>
+              <option value="high">High</option>
+            </select>
+          </div>
+
+          <button type="submit">{addEditData ? "Edit" : "Add"} Task</button>
+        </form>
+      </div>
+    </FormControl>
   );
 };
 

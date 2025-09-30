@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import "./TaskCard.css";
-import { useFetchHook } from "../API/useFetchHook";
-import { API } from "../API/APIRoute";
-import AddTask from "../model/model/AddTask";
+import { useFetchHook } from "../../API/useFetchHook";
+import { API } from "../../API/APIRoute";
+import AddTask from "../../model/model/AddTask";
 
 const TaskCard = ({ task, onTaskDeleted }) => {
   const { taskname, completed, important, priority, _id } = task;

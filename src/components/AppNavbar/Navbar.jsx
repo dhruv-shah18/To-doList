@@ -1,19 +1,18 @@
 import { useState } from "react";
 import "./Navbar.css";
-import { Link, useNavigate } from "react-router";
+import { NavLink, useNavigate } from "react-router";
 import { useRef } from "react";
-import AddTask from "../model/model/AddTask";
-import { useFetchHook } from "../API/useFetchHook";
-import { API } from "../API/APIRoute";
-import { useAuth } from "../context/AuthContext";
-import { Navigate } from "react-router";
+import AddTask from "../../model/model/AddTask";
+import { useFetchHook } from "../../API/useFetchHook";
+import { API } from "../../API/APIRoute";
+import { useAuth } from "../../context/AuthContext";
 
 const Navbar = () => {
   const menuRef = useRef(null);
   const [openAddTaskForm, setOpenAddTaskForm] = useState(false);
   const { fetchData } = useFetchHook();
   const { isAuthenticated } = useAuth();
-  const navigate=useNavigate()
+  const navigate = useNavigate();
 
   const handleMenuToggle = (e) => {
     if (menuRef.current) {
@@ -43,9 +42,9 @@ const Navbar = () => {
       <div className="navbar">
         <nav className="flex">
           <div className="mp-logo">
-            <Link to={"/alltasks"}>
+            <NavLink to={"/alltasks"} className={({ isActive }) => isActive ? "li-links active-link" : "li-links"}>
               <img src="public/Logo.png" className="logo" />
-            </Link>
+            </NavLink>
           </div>
           <div className="flex-title">
             <p className="no-margin-padding">Task Force</p>
@@ -65,33 +64,33 @@ const Navbar = () => {
             </button>
           </li>}
           <li>
-            <Link to={"/alltasks"} className="li-links">
+            <NavLink to={"/alltasks"} className={({ isActive }) => isActive ? "li-links active-link" : "li-links"}>
               <img src="public/all_tasks.svg" className="icon" />
               Tasks
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link to={"/imptasks"} className="li-links">
+            <NavLink to={"/imptasks"}  style={{ "--bg": "#ec505c" }} className={({ isActive }) => isActive ? "li-links active-link" : "li-links"}>
               <img src="public/important_task.svg" className="icon" />
               Important
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link to={"/prioritytasks"} className="li-links">
+            <NavLink to={"/prioritytasks"}  style={{ "--bg": "#7793c5" }} className={({ isActive }) => isActive ? "li-links active-link" : "li-links"}>
               <img src="public/priority_task.svg" className="icon" />
               Priority
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link to={"/completedtasks"} className="li-links">
+            <NavLink to={"/completedtasks"} style={{ "--bg": "#6dce63ff" }} className={({ isActive }) => isActive ? "li-links active-link" : "li-links"}>
               <img src="public/completed_task.svg" className="icon" />
               Completed
-            </Link>
+            </NavLink>
           </li>
          {!isAuthenticated && <li className="btn">
-            <Link to={"/login"} className="li-links">
+            <NavLink to={"/login"} className="li-links">
               <span>Login / Register</span>
-            </Link>
+            </NavLink>
           </li>}
           {isAuthenticated && <li className="btn-button">
             <button type="button" className="btn-links" onClick={handleLogout}>
@@ -115,33 +114,33 @@ const Navbar = () => {
       </div>
       <ul ref={menuRef} className="ul-button" popoverTarget="body">
         <li>
-          <Link to={"/alltasks"} className="btn-links">
+          <NavLink to={"/alltasks"} className="btn-links">
             <img src="public/all_tasks.svg" className="icon" />
             Tasks
-          </Link>
+          </NavLink>
         </li>
         <li>
-          <Link to={"/imptasks"} className="btn-links">
+          <NavLink to={"/imptasks"} className="btn-links">
             <img src="public/important_task.svg" className="icon" />
             Important
-          </Link>
+          </NavLink>
         </li>
         <li>
-          <Link to={"/prioritytasks"} className="btn-links">
+          <NavLink to={"/prioritytasks"} className="btn-links">
             <img src="public/priority_task.svg" className="icon" />
             Priority
-          </Link>
+          </NavLink>
         </li>
         <li>
-          <Link to={"/completedtasks"} className="btn-links">
+          <NavLink to={"/completedtasks"} className="btn-links">
             <img src="public/completed_task.svg" className="icon" />
             Completed
-          </Link>
+          </NavLink>
         </li>
         {!isAuthenticated && <li className="btn">
-          <Link to={"/login"} className="btn-links">
+          <NavLink to={"/login"} className="btn-links">
             <span>Login / Register</span>
-          </Link>
+          </NavLink>
         </li>}
        {isAuthenticated &&<li className="btn">
           <button type="button" className="btn-links">
