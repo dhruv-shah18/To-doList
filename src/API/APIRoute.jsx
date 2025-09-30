@@ -1,4 +1,4 @@
-const BACKEND_ROUTE = "http://localhost:5000/api/";
+const BACKEND_ROUTE = import.meta.env.VITE_API_ROUTE;
 const TASKS_ROUTE = "tasks/";
 const USERS_ROUTE = "users/";
 
