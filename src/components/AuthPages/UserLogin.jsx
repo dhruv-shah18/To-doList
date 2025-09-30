@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
 import './UserLogin.css';
 import { Link } from 'react-router';
-import { useFetchHook } from '../API/useFetchHook';
-import { API } from '../API/APIRoute';
+import { useFetchHook } from '../../API/useFetchHook';
+import { API } from '../../API/APIRoute';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext';
+import { useAuth } from '../../context/AuthContext';
 
 const UserLogin = () => {
   const [credentials, setCredentials] = useState({
     email: '',
     password: '',
   });
-  const { setAuthToken, setUser } = useAuth();
+  const { setAuthToken, setUser, setRole } = useAuth();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -27,9 +27,11 @@ const UserLogin = () => {
     if(response.access_token){
       setAuthToken(response.access_token);
       setUser(response.user.email);
+      setRole(response.user.role || 'user');
       localStorage.setItem('accessToken', response.access_token);
       localStorage.setItem('user', response.user.email);
-      navigate('/alltasks');
+      localStorage.setItem('role', response.user.role || 'user');
+      response?.user?.role === "admin" ? navigate('/admin') : navigate('/alltasks');
     }
   };
 

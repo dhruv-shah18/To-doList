@@ -5,6 +5,12 @@ const USERS_ROUTE = "users/";
 
 export const API = {
   GETALLTASK: BACKEND_ROUTE + TASKS_ROUTE + "alltasks",
+  // GETALLTASKS: (pagination, page, limit) => `${BACKEND_ROUTE}${TASKS_ROUTE}alltasks/${pagination}/${page}/${limit}`,
+  GETALLTASKS: (pagination, page, limit, search) => `${BACKEND_ROUTE}${TASKS_ROUTE}alltasks?pagination=${pagination}&page=${page}&limit=${limit}&search=${search}`,
+  ADMINGETUSERBYID: (id) => `${BACKEND_ROUTE}${TASKS_ROUTE}admin/${id}`,
+  ADMINTASKSUMMARY: BACKEND_ROUTE + TASKS_ROUTE + "admin/usertask/summary",
+  ADMINGETALLUSERS: BACKEND_ROUTE + TASKS_ROUTE + "admin",
+  ADMINSUMMARY: BACKEND_ROUTE + TASKS_ROUTE + "admin/summary",
   GETIMPTASK: BACKEND_ROUTE + TASKS_ROUTE + "imptasks",
   GETCOMPTASK: BACKEND_ROUTE + TASKS_ROUTE + "completedtask",
   GETPRIOTASK: BACKEND_ROUTE + TASKS_ROUTE + "prioritytask",
@@ -15,4 +21,5 @@ export const API = {
   USER_REGISTER: BACKEND_ROUTE + USERS_ROUTE + "register",
   USER_LOGIN: BACKEND_ROUTE + USERS_ROUTE + "login",
   USER_LOGOUT: BACKEND_ROUTE + USERS_ROUTE + "logout",
+  DELETE_USER: (id) => BACKEND_ROUTE + USERS_ROUTE + "deleteuser/" + id,
 };

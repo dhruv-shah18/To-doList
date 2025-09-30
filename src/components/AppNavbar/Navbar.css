@@ -17,7 +17,7 @@
 
 .ul-link .li-links {
   text-decoration: none;
-  color: inherit;
+  color: black;
   vertical-align: middle;
 }
 
@@ -195,7 +195,7 @@
 .btn-button button {
   background-color: white;
   border: none;
-  color: inherit;
+  color: black;
   font: inherit;
   cursor: pointer;
   line-height: normal;
@@ -212,6 +212,15 @@
   background-color: white;
   color: black;
 }
+
+.ul-link .active-link {
+  background-color: var(--bg, #1a654e); /* or any custom variable */
+  color: white;
+  border-radius: 6px;
+  padding: 6px 12px;
+  transition: all 0.2s ease;
+}
+
 
 
 @media (max-width: 991px) {

@@ -1,18 +1,19 @@
 import React, { useState, useEffect } from "react";
 import "./CommonCSS.css";
-import { useFetchHook } from "../API/useFetchHook";
-import { API } from "../API/APIRoute";
-import TaskCard from "./TaskCard";
+import { useFetchHook } from "../../API/useFetchHook";
+import { API } from "../../API/APIRoute";
+import TaskCard from "../CardComponent/TaskCard";
+import TasksFallback from "./TasksFallback";
 
-const PriorityTask = () => {
+const ImportantTask = () => {
   const [search, setSearch] = useState("");
-  const [priorityTask, setPriorityTask] = useState();
-  const API_URL = API.GETPRIOTASK;
-  const { data, loading, error, fetchData } = useFetchHook();
+  const [importantTask, setImportantTask] = useState();
+  const API_URL = API.GETIMPTASK;
+  const { fetchData } = useFetchHook();
 
   const fetchingData = async () => {
     let result = await fetchData({ API_URL: API_URL });
-    setPriorityTask(result?.result);
+    setImportantTask(result?.result);
   };
 
   useEffect(() => {
@@ -25,11 +26,11 @@ const PriorityTask = () => {
 
   return (
     <div className="container">
-      <div className="flex">
-        <h3 className="box-color" style={{ "--bg": "#7793c5" }}>
-          Priority Task - <span className="tasks">Total {priorityTask?.length}</span>
+     {importantTask?.length > 0 && <div className="flex">
+        <h3 className="box-color" style={{ "--bg": "#ec505c" }}>
+          Important Task - <span className="tasks"> Total {importantTask?.length}</span>
         </h3>
-        <span className="line" style={{ "--bg": "#7793c5" }}></span>
+        <span className="line" style={{ "--bg": "#ec505c" }}></span>
         <input
           type="text"
           placeholder="Search🔍"
@@ -37,9 +38,9 @@ const PriorityTask = () => {
           value={search}
           onChange={handleSearch}
         />
-      </div>
-      <div className="grid">
-        {priorityTask?.map((task) => {
+      </div>}
+      {importantTask?.length > 0 ? <div className="grid overflow">
+        {importantTask?.map((task) => {
           if (search && String(task["taskname"]).includes(search)) {
             return (
               <>
@@ -56,9 +57,9 @@ const PriorityTask = () => {
             return <></>;
           }
         })}
-      </div>
+      </div> : <TasksFallback /> }
     </div>
   );
 };
 
-export default PriorityTask;
+export default ImportantTask;
