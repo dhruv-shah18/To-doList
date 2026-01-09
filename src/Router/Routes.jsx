@@ -11,12 +11,21 @@ import TasksFallback from "../components/Tasks/TasksFallback";
 import ProtectedRoutes from "./ProtectedRoutes";
 import PrivateRoutes from "./PrivateRoutes";
 import Admin from "../components/Admin/Admin";
+import ChatBot from "../components/AIChatBot/ChatBot";
 
 const AppRoutes = () => {
   return (
     <div>
       <Router>
         <Routes>
+          <Route
+            path="/chatbot"
+            element={
+              <ProtectedRoutes>
+                <Layout Component={ChatBot} />
+              </ProtectedRoutes>
+            }
+          />
           <Route
             path="/alltasks"
             element={
@@ -60,13 +69,13 @@ const AppRoutes = () => {
               </ProtectedRoutes>
             }
           />
-          <Route 
-           path="/admin"
-           element={
-            <PrivateRoutes>
-              <Layout Component={Admin} hideNavbar/>
-            </PrivateRoutes>
-           }
+          <Route
+            path="/admin"
+            element={
+              <PrivateRoutes>
+                <Layout Component={Admin} hideNavbar />
+              </PrivateRoutes>
+            }
           />
         </Routes>
       </Router>

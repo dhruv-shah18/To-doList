@@ -1,6 +1,7 @@
 // ThemeContext.js
 import { createContext, useMemo, useState, useContext } from "react";
-import { ThemeProvider, createTheme, CssBaseline } from "@mui/material";
+import { ThemeProvider, CssBaseline } from "@mui/material";
+import { getTheme } from "../theme";
 
 const ThemeToggleContext = createContext();
 
@@ -14,27 +15,7 @@ export const CustomThemeProvider = ({ children }) => {
     setMode((prev) => (prev === "light" ? "dark" : "light"));
   };
 
-  const theme = useMemo(
-    () =>
-      createTheme({
-        palette: {
-          mode,
-          ...(mode === "light"
-            ? {
-                primary: { main: "#1976d2" },
-                background: { default: "#f5f5f5" },
-              }
-            : {
-                primary: { main: "#90caf9" },
-                background: { default: "#121212" },
-              }),
-        },
-        shape: {
-          borderRadius: 10,
-        },
-      }),
-    [mode]
-  );
+  const theme = useMemo(() => getTheme(mode), [mode]);
 
   return (
     <ThemeToggleContext.Provider value={toggleTheme}>

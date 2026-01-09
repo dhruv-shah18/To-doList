@@ -1,22 +1,28 @@
 import React, { useState, useEffect } from "react";
-import "./CommonCSS.css";
 import { useFetchHook } from "../../API/useFetchHook";
 import { API } from "../../API/APIRoute";
 import TaskCard from "../CardComponent/TaskCard";
 import TasksFallback from "./TasksFallback";
+import {
+  Box,
+  Typography,
+  TextField,
+  Grid,
+  Divider,
+} from "@mui/material";
 
 const CompletedTask = () => {
   const [search, setSearch] = useState("");
   const [completedTask, setCompletedTask] = useState();
   const API_URL = API.GETCOMPTASK;
-  const { data, loading, error, fetchData } = useFetchHook();
+  const { fetchData } = useFetchHook();
 
   const handleSearch = (e) => {
-    setSearch(e.target.value);  
+    setSearch(e.target.value);
   };
 
-  const fetchingData = async() => {
-    let result = await fetchData({ API_URL : API_URL })
+  const fetchingData = async () => {
+    let result = await fetchData({ API_URL: API_URL })
     setCompletedTask(result?.result);
   }
 
@@ -24,44 +30,44 @@ const CompletedTask = () => {
     fetchingData();
   }, []);
 
+  const filteredTasks = completedTask?.filter(task =>
+    !search || String(task.taskname).toLowerCase().includes(search.toLowerCase())
+  );
+
   return (
-    <div className="container">
-      {completedTask?.length > 0 &&<div className="flex">
-        <h3 className="box-color" style={{ "--bg": "#6dce63ff" }}>
-          Completed Task{completedTask?.length == 0 ? "" : <span className="tasks"> - Total {completedTask?.length}</span>}
-        </h3>
-        <span className="line" style={{ "--bg": "#6dce63ff" }}></span>
-        <input
-          type="text"
-          placeholder="Search🔍"
-          className="searchbox"
+    <Box>
+      <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, justifyContent: 'space-between', alignItems: 'center', mb: 3, gap: 2 }}>
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+          <Typography variant="h4" fontWeight="bold" sx={{ color: '#10b981' }}>
+            Completed Tasks
+          </Typography>
+          <Divider orientation="vertical" flexItem />
+          <Typography variant="h6" color="text.secondary">
+            Total {completedTask?.length || 0}
+          </Typography>
+        </Box>
+
+        <TextField
+          placeholder="Search completed tasks..."
+          size="small"
           value={search}
           onChange={handleSearch}
+          sx={{ bgcolor: 'background.paper', borderRadius: 1, width: { xs: '100%', md: 300 } }}
         />
-      </div>}
-      {completedTask?.length > 0 ? <div className="grid overflow">
-        {completedTask?.map((task) => {
-          if (search && String(task["taskname"]).includes(search)) {
-            return (
-              <>
-                <TaskCard task={task} />
-              </>
-            );
-          } else if ( !search ) {
-            return (
-              <>
-                <TaskCard task={task} />
-              </>
-            );
-          } else {
-            return (
-              <>
-              </>
-            )
-          }
-        })}
-      </div> : <TasksFallback />}
-    </div>
+      </Box>
+
+      {completedTask?.length > 0 ? (
+        <Grid container spacing={3}>
+          {filteredTasks?.length > 0 ? filteredTasks.map((task) => (
+            <Grid item xs={12} sm={6} md={4} lg={3} key={task._id}>
+              <TaskCard task={task} onTaskDeleted={fetchingData} />
+            </Grid>
+          )) : <Typography variant="h6" textAlign="center" width="100%">No matching tasks found.</Typography>}
+        </Grid>
+      ) : (
+        <TasksFallback />
+      )}
+    </Box>
   );
 };
 
